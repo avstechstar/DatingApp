@@ -33,6 +33,7 @@ namespace DatingApp.API
             
             services.AddControllers();
             services.AddCors(); // cross origine calls allowed 
+            services.AddScoped<IAuthRepository, AuthRepository>(); //life time of log in, like singleton
 
         }
 
