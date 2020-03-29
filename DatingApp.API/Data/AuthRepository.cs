@@ -11,6 +11,13 @@ namespace DatingApp.API.Data
         {
             _context = context;
         }
+        public async Task<User> Login(string username, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            if(user == null)
+                return null;
+        }
+
         public async Task<User> Register(User user, string password)
         {
             // throw new System.NotImplementedException();
@@ -32,10 +39,7 @@ namespace DatingApp.API.Data
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-        public Task<User> Login(string username, string password)
-        {
-            throw new System.NotImplementedException();
-        }
+  
         public Task<bool> UserExists(string username)
         {
             throw new System.NotImplementedException();
